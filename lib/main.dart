@@ -30,12 +30,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        leading: Icon(Icons.dataset_linked),
+        title: Center(
+          child: Text(
+            widget.title,
+            style: const TextStyle(
+                fontSize: 18
+            ),
+          ),
+        ),
+        leading: const Icon(Icons.dataset_linked),
       ),
     );
   }

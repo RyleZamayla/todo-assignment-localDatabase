@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:todo_assignment2/models/todos_model.dart';
+import 'package:todo_assignment2/models/todos_model_lApi.dart';
 
 class Services {
   static const root = 'http://localhost/todo-assignment-localDatabase/todo_actions.php';
