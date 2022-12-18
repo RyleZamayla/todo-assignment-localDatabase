@@ -12,12 +12,12 @@ class TodoCard extends StatefulWidget {
   final Function deleteFunction;
   TodoCard({
     required this.id,
-      required this.title,
-      required this.creationDate,
-      required this.isChecked,
-      required this.insertFunction,
-      required this.deleteFunction,
-        Key? key
+    required this.title,
+    required this.creationDate,
+    required this.isChecked,
+    required this.insertFunction,
+    required this.deleteFunction,
+    Key? key
   }) : super(key: key);
 
   @override
@@ -46,7 +46,6 @@ class TodocardState extends State<TodoCard> {
                   widget.isChecked = value!;
                 });
                 anotherTodo.isChecked = value!;
-                // insert it to database
                 widget.insertFunction(anotherTodo);
               },
             ),
@@ -59,7 +58,7 @@ class TodocardState extends State<TodoCard> {
                   widget.title,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 20,
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -68,7 +67,7 @@ class TodocardState extends State<TodoCard> {
                       .format(widget.creationDate),
                   style: const TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
                     color: Color(0xFF8F8F8F),
                   ),
                 ),
@@ -77,7 +76,6 @@ class TodocardState extends State<TodoCard> {
           ),
           IconButton(
             onPressed: () {
-              // add delete method
               widget.deleteFunction(anotherTodo);
             },
             icon: const Icon(Icons.close),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_assignment2/models/database_model.dart';
 import 'package:todo_assignment2/screens/todo_card.dart';
+import 'package:lottie/lottie.dart';
 
 class Todolist extends StatelessWidget {
 
@@ -24,7 +25,18 @@ class Todolist extends StatelessWidget {
           var data = snapshot.data;
           var dataLength = data!.length;
           return dataLength == 0
-              ? const Center(child: Text('DATA not found...'),)
+              ? Center(child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset("assets/116072-socialv-no-data.json", height: 200),
+                  const Text('No data to Display.',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 24)
+                  ),
+                ],
+              ))
               : ListView.builder(
                   itemCount: dataLength,
                   itemBuilder: (context, counter) => TodoCard(

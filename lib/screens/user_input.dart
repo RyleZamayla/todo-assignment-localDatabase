@@ -23,7 +23,7 @@ class UserInput extends StatelessWidget {
               child: TextField(
                 controller: textController,
                 decoration: const InputDecoration(
-                  hintText: 'add new todo',
+                  hintText: 'Add a new Task:',
                   border: InputBorder.none,
                 ),
               ),
@@ -32,11 +32,10 @@ class UserInput extends StatelessWidget {
           const SizedBox(width: 10),
           GestureDetector(
             onTap: () {
-              // create a todo
               var myTodo = Todo(
-                  title: textController.text,
-                  creationDate: DateTime.now(),
-                  isChecked: false);
+                title: textController.text,
+                creationDate: DateTime.now(),
+                isChecked: false);
               insertFunction(myTodo);
             },
             child: Container(
