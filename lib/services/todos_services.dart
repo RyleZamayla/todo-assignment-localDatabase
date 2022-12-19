@@ -12,7 +12,7 @@ class Services {
 
   static Future<String> createTable() async{
     try{
-      var map = Map<String, dynamic>();
+      var map = <String, dynamic>{};
       map['action'] = createTableAction;
       final response = await http.post(Uri.parse(root), body: map);
       print("Create table response: ${response.body}");
@@ -29,7 +29,7 @@ class Services {
 
   static Future<List<Todo>> getTodo() async{
     try{
-      var map = Map<String, dynamic>();
+      var map = <String, dynamic>{};
       map['action'] = getAllAction;
       final response = await http.post(Uri.parse(root), body: map);
       print("Create table response: ${response.body}");
@@ -53,7 +53,7 @@ class Services {
 
   static Future<String> addTodo(String titleTodos, String descTodos) async{
     try{
-      var map = Map<String, dynamic>();
+      var map = <String, dynamic>{};
       map['action'] = addTodoAction;
       final response = await http.post(Uri.parse(root), body: map);
       print("Create table response: ${response.body}");
@@ -73,7 +73,7 @@ class Services {
       int todoId, String titleTodos, String descTodos
       ) async {
     try{
-      var map = Map<String, dynamic>();
+      var map = <String, dynamic>{};
       map['action'] = updateTodoAction;
       map['todoId'] = todoId;
       map['titleTodos'] = titleTodos;
@@ -94,7 +94,7 @@ class Services {
 
   static Future<String> deleteTodo(int todoId) async {
     try{
-      var map = Map<String, dynamic>();
+      var map = <String, dynamic>{};
       map['action'] = deleteTodoId;
       map['todoId'] = todoId;
       final response = await http.post(Uri.parse(root), body: map);

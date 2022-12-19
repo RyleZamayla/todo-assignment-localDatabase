@@ -1,4 +1,4 @@
-class Todo {
+class Todo { // ignore: file_names
   int? id;
   final String title;
   DateTime creationDate;
@@ -15,8 +15,7 @@ class Todo {
     return {
       'id': id,
       'title': title,
-      'creationDate': creationDate
-          .toString(),
+      'creationDate': creationDate.toString(),
       'isChecked': isChecked
           ? 1
           : 0,

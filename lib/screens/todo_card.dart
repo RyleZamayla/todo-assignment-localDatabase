@@ -7,9 +7,10 @@ class TodoCard extends StatefulWidget {
   final int id;
   final String title;
   final DateTime creationDate;
-  bool isChecked;
+  late final bool isChecked;
   final Function insertFunction;
   final Function deleteFunction;
+  // ignore: prefer_const_constructors_in_immutables
   TodoCard({
     required this.id,
     required this.title,
@@ -75,13 +76,34 @@ class TodocardState extends State<TodoCard> {
             ),
           ),
           IconButton(
-            onPressed: () {
-              widget.deleteFunction(anotherTodo);
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text("Confirm task 'DELETE' submission?"),
+                  content: const Text("Yes, I would like to confirm that this task should be deleted."),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                        widget.deleteFunction(anotherTodo);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                        color: Colors.redAccent),
+                        child: const Text("confirm", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.delete, color: Colors.grey),
           ),
         ],
       ),
     );
   }
+
 }
