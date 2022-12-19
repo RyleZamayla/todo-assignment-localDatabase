@@ -8,7 +8,7 @@ class TodoCard extends StatefulWidget {
   final int id;
   final String title;
   final DateTime creationDate;
-  bool isChecked;
+  late final bool isChecked;
   final Function insertFunction;
   final Function deleteFunction;
   // ignore: prefer_const_constructors_in_immutables
