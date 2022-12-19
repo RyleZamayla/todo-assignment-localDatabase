@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_assignment2/models/todos_model_LocalDB.dart';
 
+// ignore: must_be_immutable
 class TodoCard extends StatefulWidget {
 
   final int id;
@@ -10,6 +11,7 @@ class TodoCard extends StatefulWidget {
   bool isChecked;
   final Function insertFunction;
   final Function deleteFunction;
+  // ignore: prefer_const_constructors_in_immutables
   TodoCard({
     required this.id,
     required this.title,
@@ -41,10 +43,57 @@ class TodocardState extends State<TodoCard> {
             margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Checkbox(
               value: widget.isChecked,
-              onChanged: (bool? value) {
-                setState(() {
-                  widget.isChecked = value!;
-                });
+              onChanged: (bool? value) async {
+                if(widget.isChecked == false){
+                  await showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      title: const Text("Confirm task [ COMPLETED ] submission?"),
+                      content: const Text("Yes, I would like to confirm that this task has been completed"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                            setState(() {
+                              widget.isChecked = value!;
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                                color: Colors.green),
+                            child: const Text("confirm", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                else{
+                  await showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      title: const Text("Confirm task [ NOT COMPLETED ] submission?"),
+                      content: const Text("Yes, I would like to confirm that this task has not been completed"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                            setState(() {
+                              widget.isChecked = value!;
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                                color: Colors.green),
+                            child: const Text("confirm", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
                 anotherTodo.isChecked = value!;
                 widget.insertFunction(anotherTodo);
               },
@@ -75,13 +124,34 @@ class TodocardState extends State<TodoCard> {
             ),
           ),
           IconButton(
-            onPressed: () {
-              widget.deleteFunction(anotherTodo);
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text("Confirm task 'DELETE' submission?"),
+                  content: const Text("Yes, I would like to confirm that this task should be deleted."),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                        widget.deleteFunction(anotherTodo);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                        color: Colors.redAccent),
+                        child: const Text("confirm", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.delete, color: Colors.grey),
           ),
         ],
       ),
     );
   }
+
 }

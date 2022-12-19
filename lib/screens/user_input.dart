@@ -44,8 +44,7 @@ class UserInput extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 18),
-              child: const Text(
-                'Add',
+              child: const Text('Add',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
