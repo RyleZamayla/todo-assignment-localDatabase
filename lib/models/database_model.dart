@@ -8,7 +8,6 @@ class DatabaseConnect {
 
 
   Future<Database> get database async {
-
     final dbpath = await getDatabasesPath();
     const dbname = 'todo.db';
     final path = join(dbpath, dbname);
@@ -68,7 +67,6 @@ class DatabaseConnect {
   }
   Future<void> updateTodo(int id, String title) async {
     final db = await database;
-
     await db.update(
       'todo',
       {

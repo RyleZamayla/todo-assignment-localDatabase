@@ -5,15 +5,17 @@ import 'package:lottie/lottie.dart';
 
 class Todolist extends StatelessWidget {
 
+  final Function updateFunction;
   final Function insertFunction;
   final Function deleteFunction;
   final db = DatabaseConnect();
 
   Todolist({
-        required this.insertFunction,
-        required this.deleteFunction,
-        Key? key
-      }) : super(key: key);
+    required this.updateFunction,
+    required this.insertFunction,
+    required this.deleteFunction,
+    Key? key
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class Todolist extends StatelessWidget {
                     creationDate: data[counter].creationDate,
                     isChecked: data[counter].isChecked,
                     insertFunction: insertFunction,
+                    updateFunction: updateFunction,
                     deleteFunction: deleteFunction,
             ),
           );

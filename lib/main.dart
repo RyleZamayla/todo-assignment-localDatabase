@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Setting up LocalDB using sqflite'),
+      home: const MyHomePage(title: 'Setting up LocalDB using Sqflite'),
     );
   }
 }
@@ -47,6 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
+  void updateItem(int id, String title) async {
+    await db.updateTodo(id, title);
+    setState(() {});
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          Todolist(insertFunction: addItem, deleteFunction: deleteItem),
-          // we will add our widgets here.
+          Todolist(insertFunction: addItem, deleteFunction: deleteItem, updateFunction: updateItem),
           UserInput(insertFunction: addItem),
         ],
       ),
