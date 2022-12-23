@@ -65,15 +65,13 @@ class DatabaseConnect {
       ),
     );
   }
-  Future<void> updateTodo(int id, String title) async {
+
+  Future<void> updateTodo(Todo todo) async {
     final db = await database;
     await db.update(
-      'todo',
-      {
-        'title': title,
-      },
+      'todo', todo.toMap(),
       where: 'id == ?',
-      whereArgs: [id],
+      whereArgs: [todo.id],
     );
   }
 }

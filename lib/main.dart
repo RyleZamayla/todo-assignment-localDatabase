@@ -46,8 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  void updateItem(int id, String title) async {
-    await db.updateTodo(id, title);
+  void updateItem(Todo todo) async {
+    await db.updateTodo(todo);
     setState(() {});
   }
 

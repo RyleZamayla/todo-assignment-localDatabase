@@ -31,21 +31,22 @@ class TodoCard extends StatefulWidget {
 
 class TodocardState extends State<TodoCard> {
 
-  TextEditingController todoController = TextEditingController();
+  late TextEditingController todoController = TextEditingController(text: widget.title);
+
+  late var anotherTodo = Todo(
+      id: widget.id,
+      title: widget.title,
+      creationDate: widget.creationDate,
+      isChecked: widget.isChecked);
 
   @override
   void initState() {
     super.initState();
-    todoController.text = widget.title;
   }
 
   @override
   Widget build(BuildContext context) {
-    var anotherTodo = Todo(
-        id: widget.id,
-        title: widget.title,
-        creationDate: widget.creationDate,
-        isChecked: widget.isChecked);
+
 
     return Card(
       child: Row(
@@ -157,7 +158,7 @@ class TodocardState extends State<TodoCard> {
                       top: Radius.circular(25.0),
                     ),
                   ),
-                  backgroundColor: Colors.white, // <-- SEE HERE
+                  backgroundColor: Colors.white,
                   builder: (context) => Padding(
                       padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -209,10 +210,16 @@ class TodocardState extends State<TodoCard> {
                                         backgroundColor: Colors.lightBlueAccent, // foreground
                                       ),
                                       onPressed: () {
-                                        print("${anotherTodo.id}, ${anotherTodo.title}");
+                                        var titleHandler = Todo(
+                                            id: widget.id,
+                                            title: todoController.text,
+                                            creationDate: widget.creationDate,
+                                            isChecked: widget.isChecked);
+                                        Navigator.pop(context);
                                         setState(() {
-                                           widget.updateFunction(anotherTodo.id, anotherTodo.title);
-                                        });
+                                          widget.updateFunction(titleHandler);
+                                        }
+                                        );
                                       },
                                       child: const Text("Update Task",
                                         style:
