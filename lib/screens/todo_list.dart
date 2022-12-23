@@ -42,6 +42,7 @@ class Todolist extends StatelessWidget {
               : ListView.builder(
                   itemCount: dataLength,
                   itemBuilder: (context, counter) => TodoCard(
+                    key: Key(data[counter].id.toString()),
                     id: data[counter].id,
                     title: data[counter].title,
                     creationDate: data[counter].creationDate,

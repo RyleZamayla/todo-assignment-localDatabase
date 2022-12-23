@@ -37,6 +37,7 @@ class DatabaseConnect {
     );
   }
   Future<void> deleteTodo(Todo todo) async {
+    print(todo.id);
     final db = await database;
     await db.delete(
       'todo',

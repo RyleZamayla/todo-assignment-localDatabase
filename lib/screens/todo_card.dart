@@ -56,16 +56,16 @@ class TodocardState extends State<TodoCard> {
             child: Checkbox(
               value: widget.isChecked,
               onChanged: (bool? value) async {
-                if(widget.isChecked == false){
+                if(widget.isChecked != false){
                   await showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                      title: const Text("Confirm task [ COMPLETED ] submission?"),
-                      content: const Text("Yes, I would like to confirm that this task has been completed"),
+                      title: const Text("Confirm task [ NOT COMPLETED ] submission?"),
+                      content: const Text("Yes, I would like to confirm that this task has not been completed"),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
-                            if (widget.isChecked == false){
+                            if (widget.isChecked == true){
                               setState(() {
                                 widget.isChecked = value!;
                               });
@@ -92,12 +92,12 @@ class TodocardState extends State<TodoCard> {
                   await showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                      title: const Text("Confirm task [ NOT COMPLETED ] submission?"),
-                      content: const Text("Yes, I would like to confirm that this task has not been completed"),
+                      title: const Text("Confirm task [ COMPLETED ] submission?"),
+                      content: const Text("Yes, I would like to confirm that this task has been completed"),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
-                            if (widget.isChecked == true){
+                            if (widget.isChecked == false){
                               setState(() {
                                 widget.isChecked = value!;
                               });
